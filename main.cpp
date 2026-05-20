@@ -51,13 +51,13 @@ int main(int argc, char** argv){
 
     movieFile.close();
 
-    heapSort(movieVector); 
+    heapSort(movieVector); //sort vector 
     if (argc == 2){
-            //print all the movies in ascending alphabetical order of movie names
-            for (auto x : movieVector){
-                cout << x;
-            }
-            return 0;
+        //print all the movies in ascending alphabetical order of movie names
+        for (auto x : movieVector){
+            cout << x;
+        }
+        return 0;
     }
 
     ifstream prefixFile (argv[2]);
@@ -73,6 +73,16 @@ int main(int argc, char** argv){
             prefixes.push_back(line);
         }
     }
+
+
+    //ryan - my current idea 
+    //  for the prefixes, create a vector of vector<string>
+    //  the vector<string> will store all titles that fit a prefix 
+    //  the vector<vector<string>> stores ALL titles found
+    //
+    //  similar logic to a frequency table but instead of incrementing a value
+    //  you push_back a movie title 
+    //  alphabetical order should be dealt with by the original list
 
     //  For each prefix,
     //  Find all movies that have that prefix and store them in an appropriate data structure

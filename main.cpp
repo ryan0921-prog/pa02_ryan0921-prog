@@ -35,6 +35,7 @@ int main(int argc, char** argv){
     }
   
     // Create an object of a STL data-structure to store all the movies
+    vector<Movie> movieVector; 
 
     string line, movieName;
     double movieRating;
@@ -44,12 +45,18 @@ int main(int argc, char** argv){
             // to construct your Movie objects
             // cout << movieName << " has rating " << movieRating << endl;
             // insert elements into your data structure
+            Movie newMovie(movieName, movieRating);
+            movieVector.push_back(newMovie); 
     }
 
     movieFile.close();
 
+    heapSort(movieVector); 
     if (argc == 2){
             //print all the movies in ascending alphabetical order of movie names
+            for (auto x : movieVector){
+                cout << x;
+            }
             return 0;
     }
 

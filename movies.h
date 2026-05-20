@@ -1,17 +1,28 @@
+
+#ifndef MOVIES_H
+#define MOVIES_H
+#include <ostream>
+
 class Movie{
     //not sure what data structure to use rn, just setting up some basics
     public: 
         Movie(); 
-        Movie(string title, int rating); 
+        Movie(std::string t, double r); 
 
-        void setTitle(string t); 
-        void setRating(int r); 
+        void setTitle(std::string t); 
+        void setRating(double r); 
 
-        string getTitle(); 
-        int getRating(); 
+        std::string getTitle() const; 
+        double getRating() const; 
 
+        //ryan - im thinking of using a minheap sort so we'll just need a less-than operator 
+        bool operator>(const Movie& other) const; 
         
     private: 
-        string title; 
-        int rating; 
+        std::string title; 
+        double rating; 
 };
+
+std::ostream& operator<<(std::ostream&os, const Movie& movie); 
+
+#endif

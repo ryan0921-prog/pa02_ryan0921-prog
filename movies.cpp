@@ -1,3 +1,4 @@
+#include <string> 
 #include "movies.h"
 
 
@@ -8,27 +9,37 @@ Movie::Movie() {
 }
 
 //Customed constructor
-Movie::Movie(string title, int rating) {
-    this->title = title; //established the tittle
-    this->rating = rating; //establishes the rating
-
+Movie::Movie(std::string t, double r) {
+    title = t; //established the tittle
+    rating = r; //establishes the rating
 }
 
 
 //setter for titles
-void Movie::setTitle(string t) {
+void Movie::setTitle(std::string t) {
     title = t;  //set title to whatever is inputed
 }
 
 //setter for ratings
-void Movie::setRating(int r) {
+void Movie::setRating(double r) {
     rating = r;  //set rating to whatver is inputed
 }
 //getter for titles
-string Movie::getTitle() {
+std::string Movie::getTitle() const{
     return title;  //returns our title
 }
 //getters for rarting
-int Movie::getRating() {
+double Movie::getRating() const{
     return rating; //returns our rating
+}
+
+bool Movie::operator>(const Movie& other) const{
+    if (title.compare(other.title) > 0) return true; 
+    return false; 
+}
+
+//probably won't need this :)
+std::ostream& operator<<(std::ostream& os, const Movie& movie){
+    os << movie.getTitle() << ", " << movie.getRating() << "\n"; 
+    return os; 
 }

@@ -12,5 +12,4 @@ utilities.o: utilities.h utilities.cpp
 	g++ -c $(CXX_FLAGS) utilities.cpp
 
 clean:
-	rm -f *.o
-	rm -f runMovies
+	rm -f runMovies *.o

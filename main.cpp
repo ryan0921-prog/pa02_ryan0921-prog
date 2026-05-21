@@ -93,6 +93,36 @@ int main(int argc, char** argv){
     //  Print the highest rated movie with that prefix if it exists.
     cout << "Best movie with prefix " << "<replace with prefix>" << " is: " << "replace with movie name" << " with rating " << std::fixed << std::setprecision(1) << "replace with movie rating" << endl;
 
+    //**** PART 2 */
+
+    //Jesus-I'll be using your idea
+    //However, I believe we'd run into errors if using vector<vector<string>> bc we'd lose rating information
+    //Ill be using <vector<vector<Movie>> to keep both title and ratings
+
+    vector<vector<Movie>> PrefixMatches; 
+    
+
+
+    //Fill in the table!
+    //i for prefix
+    for (int i = 0; i < prefixes.size(); i++) {
+        vector<Movie> Match;  //inner vector kinda
+
+        //j for eah movie
+        for (int j = 0; j < movieVector.size(); j++) {
+            //this will help us check if the movie starts with the prefix
+            if (movieVector[j].getTitle().find(prefixes[i]) == 0) {
+                //using .find strategy that we learned from cs16
+                Match.push_back(movieVector[j]);  //pushed back into inner vector
+            }
+
+        }
+        PrefixMatches.push_back(Match);  //final step
+    }
+    //attempt in handling the results per each prefix
+    
+
+
     return 0;
 }
 

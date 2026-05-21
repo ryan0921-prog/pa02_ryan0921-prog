@@ -120,7 +120,33 @@ int main(int argc, char** argv){
         PrefixMatches.push_back(Match);  //final step
     }
     //attempt in handling the results per each prefix
-    
+    // *** I NEED HELP IN THIS ONE
+    //idk if im doing it right ;)
+    for (int i = 0; i < prefixes.size(); i++) {
+        if (PrefixMatches[i].size() ==0) { //simple method to check if its empty
+            cout << "No movies found with prefix "<< prefixes[i] << endl;
+        }
+        else {
+            //here we sort them based on rating from highest to low
+            //ties go to alphabetical order
+            sort(PrefixMatches[i].begin(), PrefixMatches[i].end(), [] (const Movie& a, const Movie&b) { //using std::sort
+                if (a.getRating() != b.getRating()) {//if the ratings are different (best case tbh)
+                    return a.getRating() > b.getRating();
+
+                }
+                else { //if they are equal rating, sort by alphabetical order
+                    return a.getTitle() < b.getTitle();
+
+                }
+
+            });
+
+        }
+
+    }
+
+    //Now onto printing all matches
+    //I think im doing something wrong here though, let me know
 
 
     return 0;

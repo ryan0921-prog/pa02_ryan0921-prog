@@ -140,13 +140,25 @@ int main(int argc, char** argv){
                 }
 
             });
+            //Now onto printing all matches
+            //I think im doing something wrong here though, let me know
+            //j for each movie
+            for (int j = 0; j < PrefixMatches[i].size(); j++) {
+                cout << PrefixMatches[i][j]; //this is the best method in using your << overloaded operands
 
+            }
+
+            //Project requirement; print out the best rated movie
+            //in this case it should be the first element due to our sorting method
+            cout << "Best movie with prefix " << prefixes[i] << " is: " << PrefixMatches[i][0].getTitle() << " with rating " << std::fixed << std::setprecision(1) << PrefixMatches[i][0].getRating() << endl;
         }
+        
+
 
     }
 
-    //Now onto printing all matches
-    //I think im doing something wrong here though, let me know
+   
+    
 
 
     return 0;

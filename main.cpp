@@ -160,9 +160,10 @@ int main(int argc, char** argv){
     //       ill probably have to implement a new operator to do this :( 
     //       the double loop below prints out the titles with the requested formatting, but they are not in the correct order yet
 
-    for (auto x : PrefixMatches){
-        for (auto y : x){ //y refers to the vector<Movie> that stores movies of a certain prefix 
-            if (y.size() > 0) cout << y;
+    for (auto x : PrefixMatches){ //x refers to vector<Movie> in PrefixMatches 
+        for (auto y : x){ //y refers to elements of vector<Movie> (the movies themselves)
+            if (x.size() == 0) break; 
+            cout << y; 
         }
         cout << "\n";
     }

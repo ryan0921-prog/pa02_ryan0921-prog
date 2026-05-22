@@ -78,7 +78,7 @@ int main(int argc, char** argv){
 
     //Fill in the table!
     //i for prefix
-    for (int i = 0; i < prefixes.size(); i++) {
+    /*for (int i = 0; i < prefixes.size(); i++) {
         vector<Movie> Match;  //inner vector kinda
         //auto start = lower_bound(movieVector.begin(), movieVector.end(), prefixes[i]);
         //j for eah movie
@@ -91,8 +91,25 @@ int main(int argc, char** argv){
 
         }
         PrefixMatches.push_back(Match);  //final step
+    }*/
+
+    for (int i = 0; i < prefixes.size(); i++){
+        vector<Movie> Match; 
+        int start = binarySearch(movieVector, prefixes[i]);
+
+        if (start != -1) {
+            for (int j = start; j < movieVector.size(); j++) {
+                if (movieVector[j].getTitle().substr(0, prefixes[i].size()) == prefixes[i]){
+                    Match.push_back(movieVector[j]);
+                }
+                else if (movieVector[j].getTitle().substr(0, prefixes[i].size()) > prefixes[i]){
+                    break;
+                }   
+            }
+        }
+        PrefixMatches.push_back(Match);
     }
-    
+
     //sort prefixed movie titles by rating 
     for (auto& x : PrefixMatches){
         mergeSort(x); 

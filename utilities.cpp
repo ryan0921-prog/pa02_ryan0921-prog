@@ -1,6 +1,7 @@
 #include <vector> 
 #include <queue> 
 #include <iostream> 
+#include <string> 
 #include "movies.h"
 #include "utilities.h"
 
@@ -64,3 +65,21 @@ void mergeSort(std::vector<Movie>& vector){
     mergeSort(right); 
     mergeHelper(vector,left,right); 
 }
+
+//finding first prefix
+int binarySearch(std::vector<Movie>& vector, std::string& prefix){
+    int low = 0; 
+    int high = vector.size() - 1; 
+    int start = -1; 
+
+    while (low <= high){
+        int mid = (low + high) / 2; 
+        if (vector[mid].getTitle().substr(0, prefix.size()) >= prefix) {
+            start = mid;
+            high = mid - 1;
+        } else {
+            low = mid + 1;
+        }
+    }
+    return start; 
+} 

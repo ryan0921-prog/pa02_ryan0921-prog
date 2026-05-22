@@ -76,23 +76,10 @@ int main(int argc, char** argv){
 
     vector<vector<Movie>> PrefixMatches; 
 
-    //Fill in the table!
-    //i for prefix
-    /*for (int i = 0; i < prefixes.size(); i++) {
-        vector<Movie> Match;  //inner vector kinda
-        //auto start = lower_bound(movieVector.begin(), movieVector.end(), prefixes[i]);
-        //j for eah movie
-        for (int j = 0; j < movieVector.size(); j++) {
-            //this will help us check if the movie starts with the prefix
-            if (movieVector[j].getTitle().find(prefixes[i]) == 0) {
-                //using .find strategy that we learned from cs16
-                Match.push_back(movieVector[j]);  //pushed back into inner vector
-            }
-
-        }
-        PrefixMatches.push_back(Match);  //final step
-    }*/
-
+    //changed the original linear search (super inefficient :( ) into a binary search 
+    //the binary search finds the first instance of a prefix 
+    //the following code (after "if (start != -1)") adds all the movies starting from the first prefix index until 
+    //  it reaches a movie that does not have the prefix 
     for (int i = 0; i < prefixes.size(); i++){
         vector<Movie> Match; 
         int start = binarySearch(movieVector, prefixes[i]);

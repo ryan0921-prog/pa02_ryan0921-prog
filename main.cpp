@@ -1,6 +1,6 @@
 // Winter'24
 // Instructor: Diba Mirza
-// Student name: 
+// Student name: Ryan Sun and Jesus Santibanez
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -74,32 +74,6 @@ int main(int argc, char** argv){
         }
     }
 
-
-    //ryan - my current idea 
-    //  for the prefixes, create a vector of vector<string>
-    //  the vector<string> will store all titles that fit a prefix 
-    //  the vector<vector<string>> stores ALL titles found
-    //
-    //  similar logic to a frequency table but instead of incrementing a value
-    //  you push_back a movie title 
-    //  alphabetical order should be dealt with by the original list
-
-    //  For each prefix,
-    //  Find all movies that have that prefix and store them in an appropriate data structure
-    //  If no movie with that prefix exists print the following message
-    //cout << "No movies found with prefix "<<"<replace with prefix>" << endl;
-
-    //  For each prefix,
-    //  Print the highest rated movie with that prefix if it exists.
-    //cout << "Best movie with prefix " << "<replace with prefix>" << " is: " << "replace with movie name" << " with rating " << std::fixed << std::setprecision(1) << "replace with movie rating" << endl;
-
-    //**** PART 2 */
-
-    //Jesus-I'll be using your idea
-    //However, I believe we'd run into errors if using vector<vector<string>> bc we'd lose rating information
-    //Ill be using <vector<vector<Movie>> to keep both title and ratings
-
-    //stores vectors of vectors for each prefix 
     vector<vector<Movie>> PrefixMatches; 
 
     //Fill in the table!
@@ -118,54 +92,32 @@ int main(int argc, char** argv){
         }
         PrefixMatches.push_back(Match);  //final step
     }
-    //attempt in handling the results per each prefix
-    // *** I NEED HELP IN THIS ONE
-    //idk if im doing it right ;)
-
-    //ryan - commenting this code out for now
-
-    //for (int i = 0; i < prefixes.size(); i++) {
-    //    if (PrefixMatches[i].size() ==0) { //simple method to check if its empty
-    //        cout << "No movies found with prefix "<< prefixes[i] << endl;
-    //    }
-    //    else {
-            //here we sort them based on rating from highest to low
-            //ties go to alphabetical order
-            /*sort(PrefixMatches[i].begin(), PrefixMatches[i].end(), [] (const Movie& a, const Movie&b) { //using std::sort
-                if (a.getRating() != b.getRating()) {//if the ratings are different (best case tbh)
-                    return a.getRating() > b.getRating();
-
-                }
-                else { //if they are equal rating, sort by alphabetical order
-                    return a.getTitle() < b.getTitle();
-
-                }
-
-            });
-            //Now onto printing all matches
-            //I think im doing something wrong here though, let me know
-            //j for each movie
-            for (int j = 0; j < PrefixMatches[i].size(); j++) {
-                cout << PrefixMatches[i][j]; //this is the best method in using your << overloaded operands
-
-            }
-            //Project requirement; print out the best rated movie
-            //in this case it should be the first element due to our sorting method
-            cout << "Best movie with prefix " << prefixes[i] << " is: " << PrefixMatches[i][0].getTitle() << " with rating " << std::fixed << std::setprecision(1) << PrefixMatches[i][0].getRating() << endl;*/
-            
-    //   }
-    //}
     
-    //ryan - so the titles have to be in order by rating, highest to lowest 
-    //       ill probably have to implement a new operator to do this :( 
-    //       the double loop below prints out the titles with the requested formatting, but they are not in the correct order yet
+    //sort prefixed movie titles by rating 
+    for (auto& x : PrefixMatches){
+        mergeSort(x); 
+    }
 
+    int i = 0; 
+    //print prefixed titles 
     for (auto x : PrefixMatches){ //x refers to vector<Movie> in PrefixMatches 
+        if (x.size() == 0) cout << "No movies found with prefix " << prefixes[i]; 
         for (auto y : x){ //y refers to elements of vector<Movie> (the movies themselves)
-            if (x.size() == 0) break; 
-            cout << y; 
+            cout << y.getTitle() << ", " << fixed << setprecision(1) << y.getRating() << "\n";
         }
         cout << "\n";
+        i++;
+    }
+
+    i = 0; 
+    //print highest rated prefixed titles 
+    for (auto x : PrefixMatches){
+        if (x.size() > 0){ 
+            cout << "Best movie with prefix " << prefixes[i] << " is: " 
+                 << x[0].getTitle() << " with rating " 
+                 << fixed << setprecision(1) <<  x[0].getRating() << "\n"; 
+        }
+        i++; 
     }
 }
 

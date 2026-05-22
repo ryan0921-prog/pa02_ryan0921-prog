@@ -69,7 +69,7 @@ int main(int argc, char** argv){
 
     vector<string> prefixes;
     while (getline (prefixFile, line)) {
-        if (!line.empty()) {
+        if (!line.empty()){
             prefixes.push_back(line);
         }
     }
@@ -80,7 +80,7 @@ int main(int argc, char** argv){
     //i for prefix
     for (int i = 0; i < prefixes.size(); i++) {
         vector<Movie> Match;  //inner vector kinda
-
+        //auto start = lower_bound(movieVector.begin(), movieVector.end(), prefixes[i]);
         //j for eah movie
         for (int j = 0; j < movieVector.size(); j++) {
             //this will help us check if the movie starts with the prefix
@@ -100,7 +100,7 @@ int main(int argc, char** argv){
 
     int i = 0; 
     //print prefixed titles 
-    for (auto x : PrefixMatches){ //x refers to vector<Movie> in PrefixMatches 
+    for (auto& x : PrefixMatches){ //x refers to vector<Movie> in PrefixMatches 
         if (x.size() == 0) cout << "No movies found with prefix " << prefixes[i]; 
         for (auto y : x){ //y refers to elements of vector<Movie> (the movies themselves)
             cout << y.getTitle() << ", " << fixed << setprecision(1) << y.getRating() << "\n";
@@ -111,7 +111,7 @@ int main(int argc, char** argv){
 
     i = 0; 
     //print highest rated prefixed titles 
-    for (auto x : PrefixMatches){
+    for (auto& x : PrefixMatches){
         if (x.size() > 0){ 
             cout << "Best movie with prefix " << prefixes[i] << " is: " 
                  << x[0].getTitle() << " with rating " 
